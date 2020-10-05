@@ -15,7 +15,7 @@ function* getPosts() {
 
   const options = {
     method: "GET",
-    url: `${Config.api.URL}/v1/posts?page=${page ? page : 1}`,
+    url: `${Config.api.URL}/posts?page=${page ? page : 1}`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -31,7 +31,7 @@ function* deletePost(action) {
 
   const options = {
     method: "DELETE",
-    url: `${Config.api.URL}/v1/posts/${action.id}`,
+    url: `${Config.api.URL}/posts/${action.id}`,
     headers: {
       'Content-Type': 'application/json'
     },

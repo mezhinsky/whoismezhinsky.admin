@@ -30,7 +30,7 @@ const reducer = (state = initialState, action: any) => {
         break;
 
       case actionTypes.GET_POSTS_SUCCESS:
-        draft.items = arrayToObject(action.response.items, 'id')
+        draft.items = arrayToObject(action.response.items, '_id')
         draft.total = action.response.total;
         draft.loading = false;
         draft.error = false;

@@ -109,7 +109,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
 
   const handleEditRedactorChange = (e, tag) => {
     //оптимизировать
-    setEditRedactorValue({ name: e.target.value, color: editRedactorValue.color, id: tag.id });
+    setEditRedactorValue({ name: e.target.value, color: editRedactorValue.color, id: tag._id });
   };
 
   const handleEditRedactorConfirm = (tag) => {
@@ -117,7 +117,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
     const newTags: any[] = [...tags];
     newTags[editRedactorIndex] = editRedactorValue;
     newTags[editRedactorIndex].loading = true;
-    newTags[editRedactorIndex].id = tag.id;
+    newTags[editRedactorIndex]._id = tag._id;
     setTags(newTags);
     setEditRedactorIndex(-1);
     setEditRedactorValue({ name: "", color: "" });
@@ -165,7 +165,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
         if (editRedactorIndex === index) {
           return (
             <OutsideClickHandler
-            key={tag.name}
+            key={tag._id}
             onOutsideClick={() => handleEditRedactorConfirm(tag)}
             >
             <Input.Group
@@ -173,7 +173,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
             >
               <Input
                 ref={editInput}
-                key={tag.name}
+                key={tag._id}
                 size="small"
                 className="tag-input"
                 value={editRedactorValue.name}
@@ -197,7 +197,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
           );
         }
 
-        const isLongTag = tag.name > 20;
+        const isLongTag = tag.title > 20;
         
         let icon;
         if (tag.error) {
@@ -210,7 +210,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
           <Tag
             icon={ icon }
             className="edit-tag"
-            key={tag.name}
+            key={tag._id}
             closable={true}
             onClose={() => handleClose(index, tag)}
           >
@@ -218,18 +218,18 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
               onDoubleClick={(e) => {
                 if (true) {
                   setEditRedactorIndex(index);
-                  setEditRedactorValue({ name: tag.name, color: tag.color });
+                  setEditRedactorValue({ name: tag.title, color: tag.color });
                   e.preventDefault();
                 }
               }}
             >
-              {isLongTag ? `${tag.name.slice(0, 20)}...` : tag.name}
+              {isLongTag ? `${tag.title.slice(0, 20)}...` : tag.title}
             </span>
           </Tag>
         );
 
         return isLongTag ? (
-          <Tooltip title={tag.name} key={tag.name}>
+          <Tooltip title={tag.title} key={tag._id}>
             {tagElem}
           </Tooltip>
         ) : (

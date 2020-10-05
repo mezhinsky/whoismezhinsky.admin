@@ -15,8 +15,8 @@ function PostTable({ posts, ids, loading, error, onDelete }) {
   const columns = [
     {
       title: "ID",
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "_id",
+      key: "_id",
       render: (id) => <NavLink to={`/posts/${id}`}>{id}</NavLink>,
     },
     {
@@ -42,18 +42,20 @@ function PostTable({ posts, ids, loading, error, onDelete }) {
       render: (tags) => (
         <>
           {tags.map((tag) => {
-            return (
-              <Tag color={`${tag.color}`} key={tag._id}>
-                {tag.name.toUpperCase()}
-              </Tag>
-            );
+            if (tag) {
+              return (
+                <Tag color={`${tag.color}`} key={tag._id}>
+                  {tag.title.toUpperCase()}
+                </Tag>
+              );
+            }
           })}
         </>
       ),
     },
     {
       title: "",
-      dataIndex: "id",
+      dataIndex: "_id",
       key: "x",
       render: (id) => {
         return (
@@ -75,7 +77,7 @@ function PostTable({ posts, ids, loading, error, onDelete }) {
 
   return (
     <Table
-      rowKey="id"
+      rowKey="_id"
       columns={columns}
       dataSource={posts}
       loading={loading}

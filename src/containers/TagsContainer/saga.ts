@@ -9,7 +9,7 @@ import Config from '../../config';
 function* getTags() {
   const options = {
     method: "GET",
-    url: `${Config.api.URL}/v1/tags`,
+    url: `${Config.api.URL}/tags`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -22,11 +22,11 @@ function* getTags() {
 }
 
 function* createTag({ tag }: any) {
-  tag.slug = tag.name;
+  tag.slug = tag.title;
   const options = {
     method: "POST",
     data: JSON.stringify(tag),
-    url: `${Config.api.URL}/v1/tags`,
+    url: `${Config.api.URL}/tags`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -40,12 +40,12 @@ function* createTag({ tag }: any) {
 }
 
 function* updateTag({ index, tag }: any) {
-  tag.slug = tag.name;
+  tag.slug = tag.title;
 
   const options = {
     method: "PATCH",
     data: JSON.stringify(tag),
-    url: `${Config.api.URL}/v1/tags/${tag.id}`,
+    url: `${Config.api.URL}/tags/${tag.id}`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -62,7 +62,7 @@ function* updateTag({ index, tag }: any) {
 function* deleteTag({ tag }: any) {
   const options = {
     method: "DELETE",
-    url: `${Config.api.URL}/v1/tags/${tag.id}`,
+    url: `${Config.api.URL}/tags/${tag.id}`,
     headers: {
       'Content-Type': 'application/json'
     },

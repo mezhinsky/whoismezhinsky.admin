@@ -34,7 +34,7 @@ const reducer = (state = initialState, action: any) => {
         break;
 
       case actionTypes.GET_TAGS_SUCCESS:
-        draft.items = arrayToObject(action.response, "id");
+        draft.items = arrayToObject(action.response, "_id");
         draft.total = action.response.total;
         draft.loading = false;
         draft.error = false;

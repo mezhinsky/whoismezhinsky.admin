@@ -84,7 +84,7 @@ function resetTokenAndReattemptRequest(error) {
       // новый подход
       axios({
         method: 'post',
-        url: `${Config.api.URL}/v1/auth/refresh-token`,
+        url: `${Config.api.URL}/auth/refresh-token`,
         headers: {
           'Content-Type': 'application/json',
         },

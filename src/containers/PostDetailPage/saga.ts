@@ -17,7 +17,7 @@ function* postError({err}: any) {
 function* getPost({id}: any) {
   const options = {
     method: "GET",
-    url: `${Config.api.URL}/v1/posts/${id}`,
+    url: `${Config.api.URL}/posts/${id}`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -34,7 +34,7 @@ function* createPost({post}: any) {
   const options = {
     method: "POST",
     data: JSON.stringify(post),
-    url: `${Config.api.URL}/v1/posts`,
+    url: `${Config.api.URL}/posts`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -51,7 +51,7 @@ function* updatePost({id, post}: any) {
   const options = {
     method: "PATCH",
     data: JSON.stringify(post),
-    url: `${Config.api.URL}/v1/posts/${id}`,
+    url: `${Config.api.URL}/posts/${id}`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -67,7 +67,7 @@ function* updatePost({id, post}: any) {
 function* deletePost({id}: any) {
   const options = {
     method: "PATCH",
-    url: `${Config.api.URL}/v1/posts/${id}`,
+    url: `${Config.api.URL}/posts/${id}`,
     headers: {
       'Content-Type': 'application/json'
     },

@@ -184,8 +184,8 @@ function PostForm({ item, tags, loading, error, onSubmit, onCancel }) {
           >
             {tags ? tags.map((tag, index) => {
               return (
-                <Select.Option key={tag.id} value={tag.id}>
-                  {tag.name}
+                <Select.Option key={tag._id} value={tag.id}>
+                  {tag.title}
                 </Select.Option>
               );
             }) : null }

@@ -1,6 +1,6 @@
 const dev = {
 	api: {
-		URL: "http://localhost:3001"
+		URL: "https://api.mezhinsky.com"
 	},
 };
 
