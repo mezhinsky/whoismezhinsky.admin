@@ -39,7 +39,7 @@ const Color = styled.span`
 
 interface IRedactorValue {
   id?: string;
-  name: string;
+  title: string;
   color: string;
   loading?: boolean;
   error?: boolean;
@@ -53,14 +53,14 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
   const [tags, setTags] = useState<any>(items);
   const [redactorVisible, setRedactorVisible] = useState(false);
   const [redactorValue, setRedactorValue] = useState<IRedactorValue>({
-    name: "",
+    title: "",
     color: "",
   });
   const [editRedactorIndex, setEditRedactorIndex] = useState(-1);
   const [editRedactorValue, setEditRedactorValue] = useState<IRedactorValue>({
     loading: false,
     error: false,
-    name: "",
+    title: "",
     color: "",
   });
 
@@ -109,7 +109,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
 
   const handleEditRedactorChange = (e, tag) => {
     //оптимизировать
-    setEditRedactorValue({ name: e.target.value, color: editRedactorValue.color, id: tag._id });
+    setEditRedactorValue({ title: e.target.value, color: editRedactorValue.color, id: tag._id });
   };
 
   const handleEditRedactorConfirm = (tag) => {
@@ -120,25 +120,25 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
     newTags[editRedactorIndex]._id = tag._id;
     setTags(newTags);
     setEditRedactorIndex(-1);
-    setEditRedactorValue({ name: "", color: "" });
+    setEditRedactorValue({ title: "", color: "" });
 
     //отправляем тэг на обновление
     updateTag(editRedactorIndex, newTags[editRedactorIndex]);
   };
 
   const handleRedactorChange = (e) => {
-    setRedactorValue({ name: e.target.value, color: redactorValue.color });
+    setRedactorValue({ title: e.target.value, color: redactorValue.color });
   };
 
   //создание нового
   const handleInputConfirm = () => {
-    if (redactorValue.name && tags.indexOf(redactorValue.name) === -1) {
+    if (redactorValue.title && tags.indexOf(redactorValue.title) === -1) {
       let newTags = [...tags, redactorValue]
       setTags(newTags)
       createTag(redactorValue)
     }
     setRedactorVisible(false);
-    setRedactorValue({ name: "", color: "" });
+    setRedactorValue({ title: "", color: "" });
     setColorPickerVisible(false)
   };
 
@@ -151,11 +151,11 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
   };
 
   const handleColorPick = (color) => {
-    setRedactorValue({ name: redactorValue.name, color: color.hex });
+    setRedactorValue({ title: redactorValue.title, color: color.hex });
   };
 
   const handleEditColorPick = (color, tag) => {
-    setEditRedactorValue({ name: editRedactorValue.name, color: color.hex, id: tag.id });
+    setEditRedactorValue({ title: editRedactorValue.title, color: color.hex, id: tag._id });
 
   };
 
@@ -165,7 +165,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
         if (editRedactorIndex === index) {
           return (
             <OutsideClickHandler
-            key={tag._id}
+            key={tag.title}
             onOutsideClick={() => handleEditRedactorConfirm(tag)}
             >
             <Input.Group
@@ -173,10 +173,10 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
             >
               <Input
                 ref={editInput}
-                key={tag._id}
+                key={tag.title}
                 size="small"
                 className="tag-input"
-                value={editRedactorValue.name}
+                value={editRedactorValue.title}
                 onChange={ (e) => handleEditRedactorChange(e, tag) }
                 onPressEnter={() => handleEditRedactorConfirm(tag)}
               />
@@ -210,7 +210,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
           <Tag
             icon={ icon }
             className="edit-tag"
-            key={tag._id}
+            key={tag.title}
             closable={true}
             onClose={() => handleClose(index, tag)}
           >
@@ -218,7 +218,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
               onDoubleClick={(e) => {
                 if (true) {
                   setEditRedactorIndex(index);
-                  setEditRedactorValue({ name: tag.title, color: tag.color });
+                  setEditRedactorValue({ title: tag.title, color: tag.color });
                   e.preventDefault();
                 }
               }}
@@ -229,7 +229,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
         );
 
         return isLongTag ? (
-          <Tooltip title={tag.title} key={tag._id}>
+          <Tooltip title={tag.title} key={tag.title}>
             {tagElem}
           </Tooltip>
         ) : (
@@ -247,7 +247,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
               type="text"
               size="small"
               className="tag-input"
-              value={redactorValue.name}
+              value={redactorValue.title}
               onChange={handleRedactorChange}
               onPressEnter={handleInputConfirm}
             />
