@@ -13,7 +13,7 @@ function* signIn(action) {
 
   const options = {
     method: "POST",
-    url: `${Config.api.URL}/v1/auth/${action.provider}`,
+    url: `${Config.api.URL}/auth/${action.provider}`,
     headers: {
       'Content-Type': 'application/json'
     },
