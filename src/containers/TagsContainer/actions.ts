@@ -66,6 +66,7 @@ export function tagCreateErrorAction(error: any) {
 }
 
 export function tagUpdateAction(index: any, tag: any) {
+  console.log(index, tag)
   return {
     type: actionTypes.TAG_UPDATE,
     index,

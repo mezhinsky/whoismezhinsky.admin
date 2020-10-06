@@ -1,6 +1,6 @@
 const dev = {
 	api: {
-		URL: "https://api.mezhinsky.com"
+		URL: process.env.REACT_APP_API_URL
 	},
 };
 

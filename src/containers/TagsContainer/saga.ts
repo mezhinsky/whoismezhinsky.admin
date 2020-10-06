@@ -45,7 +45,7 @@ function* updateTag({ index, tag }: any) {
   const options = {
     method: "PATCH",
     data: JSON.stringify(tag),
-    url: `${Config.api.URL}/tags/${tag.id}`,
+    url: `${Config.api.URL}/tags/${tag._id}`,
     headers: {
       'Content-Type': 'application/json'
     },

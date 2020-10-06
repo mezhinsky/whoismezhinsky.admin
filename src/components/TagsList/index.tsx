@@ -113,6 +113,7 @@ function TagsList({ items, loading, error, onCreate, onUpdate, onDelete }) {
   };
 
   const handleEditRedactorConfirm = (tag) => {
+    console.log('confirm', tag)
 
     const newTags: any[] = [...tags];
     newTags[editRedactorIndex] = editRedactorValue;
