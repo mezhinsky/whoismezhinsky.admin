@@ -1,6 +1,6 @@
 const dev = {
 	api: {
-		URL: process.env.REACT_APP_API_URL
+		URL: process.env.REACT_APP_API_URL,
 	},
 };
 

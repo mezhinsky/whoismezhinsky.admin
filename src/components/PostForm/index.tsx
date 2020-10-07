@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Checkbox, Button, Select } from "antd";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import BraftEditor from "braft-editor";
@@ -28,6 +28,10 @@ const options = {
     {
       name: "HTML",
       syntax: "html",
+    },
+    {
+      name: "Bash",
+      syntax: "bash",
     },
     {
       name: "CSS",
@@ -70,6 +74,7 @@ function PostForm({ item, tags, loading, error, onSubmit, onCancel }) {
     if (item) {
       form.setFieldsValue({
         title: item.title,
+        published: item.published,
         slug: item.slug,
         description: item.description,
         content: item.content,
@@ -134,6 +139,13 @@ function PostForm({ item, tags, loading, error, onSubmit, onCancel }) {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        <Form.Item
+          label="Опубликовано"
+          name="published"
+          valuePropName="checked"
+        >
+          <Checkbox />
+        </Form.Item>
         <Form.Item
           label="Заголовок"
           name="title"

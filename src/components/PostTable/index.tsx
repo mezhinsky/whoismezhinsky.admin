@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Table, Tag, Space, Menu, Dropdown } from "antd";
 import { Popconfirm, message, Button } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, CloseCircleOutlined, CheckCircleOutlined, CloseCircleTwoTone, CheckCircleTwoTone } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
 function PostTable({ posts, ids, loading, error, onDelete }) {
@@ -18,6 +18,12 @@ function PostTable({ posts, ids, loading, error, onDelete }) {
       dataIndex: "_id",
       key: "_id",
       render: (id) => <NavLink to={`/posts/${id}`}>{id}</NavLink>,
+    },
+    {
+      title: "Published",
+      dataIndex: "published",
+      key: "published",
+      render: (published) => <span>{!published ? <CloseCircleTwoTone style={{ fontSize: '20px' }} twoToneColor="#eb2f96"/> : <CheckCircleTwoTone style={{ fontSize: '20px' }} twoToneColor="#52c41a" />}</span>,
     },
     {
       title: "Title",

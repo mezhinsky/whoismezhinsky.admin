@@ -1,8 +1,7 @@
 import produce from "immer";
 
 import { actionTypes } from "./actions";
-import { arrayToObject, removeFromObject } from "../../utils/array";
-import { any } from "prop-types";
+import { arrayToObject } from "../../utils/array";
 
 interface IPostPageState {
   loading: boolean,
