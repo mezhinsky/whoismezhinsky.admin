@@ -21,12 +21,6 @@ function checkError(error) {
   throw parseJSON(error.response);
 }
 
-// export default function request(url, options) {
-//   return fetch(url, options)
-//     .then(checkStatus)
-//     .then(parseJSON);
-// }
-
 export const ax = axios.create();
 
 export const apiAxios = options =>
