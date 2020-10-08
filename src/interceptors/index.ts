@@ -52,7 +52,6 @@ function resetTokenAndReattemptRequest(error) {
 			auth = JSON.parse(jsonAuth);
 		}
     const resetToken = auth.refreshToken;
-    console.log('int', resetToken)
 
     if (!resetToken) {
       // We can't refresh, throw the error anyway

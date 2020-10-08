@@ -15,13 +15,13 @@ const initialState = {};
 const store = configureStore(initialState, history);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Provider store={store}>
         <ConnectedRouter history={history}>
           <App />
         </ConnectedRouter>
     </Provider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );
 

@@ -87,7 +87,7 @@ export function PostsPage({
       <PageHeader
         ghost={false}
         // breadcrumb={{ routes }}
-        title="Посты"
+        title="Блог"
         extra={[
           <Button onClick={createNewPost} type="dashed" key="1">
             Создать пост

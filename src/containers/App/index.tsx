@@ -50,12 +50,15 @@ RouteWithLayout.propTypes = {
 };
 
 function RouteToLogin({ layout, component, path, loggedIn }: any) {
-  console.log(loggedIn);
   return (
     <Route
       path={path}
       render={(props) =>
-        !loggedIn ? React.createElement(component, props) : <Redirect to="/posts" />
+        !loggedIn ? (
+          React.createElement(component, props)
+        ) : (
+          <Redirect to="/posts" />
+        )
       }
     />
   );
@@ -76,15 +79,18 @@ function App({ onLoadPage, rules, loggedIn, location }: any) {
   return (
     <div className="App">
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/posts" />
+        </Route>
         <RouteToLogin path="/login" loggedIn={loggedIn} component={LoginPage} />
 
-        <RouteWithLayout
+        {/* <RouteWithLayout
           layout={Layout}
           rules={rules}
           exact
           component={HomePage}
           path="/"
-        />
+        /> */}
 
         <RouteWithLayout
           layout={Layout}

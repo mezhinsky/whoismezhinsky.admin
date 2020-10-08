@@ -5,6 +5,12 @@ import styled from "styled-components";
 import BraftEditor from "braft-editor";
 import CodeHighlighter from "braft-extensions/dist/code-highlighter";
 import "prismjs/components/prism-java";
+import "prismjs/components/prism-php";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-rust";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-tsx";
 
 const Wrapper = styled.div`
   padding-top: 20px;
@@ -45,15 +51,27 @@ const options = {
       name: "PHP",
       syntax: "php",
     },
+    {
+      name: "Typescript",
+      syntax: "typescript",
+    },
+    {
+      name: "Rust",
+      syntax: "rust",
+    },
+    {
+      name: "React TSX",
+      syntax: "tsx",
+    },
   ],
 };
 
 BraftEditor.use(CodeHighlighter(options));
-BraftEditor.use(
-  CodeHighlighter({
-    includeEditors: ["editor-1"],
-  })
-);
+// BraftEditor.use(
+//   CodeHighlighter({
+//     includeEditors: ["editor-1"],
+//   })
+// );
 
 function useDidUpdate(callback, deps?) {
   const hasMount = useRef(false);
@@ -78,6 +96,7 @@ function PostForm({ item, tags, loading, error, onSubmit, onCancel }) {
         slug: item.slug,
         description: item.description,
         content: item.content,
+        tags: item.tags,
       });
     }
   };
@@ -189,7 +208,6 @@ function PostForm({ item, tags, loading, error, onSubmit, onCancel }) {
           rules={[{ required: false, message: "Please input description" }]}
         >
           <Select
-            defaultValue={item ? item.tags : []}
             mode="multiple"
             style={{ width: "100%" }}
             placeholder="Please select"

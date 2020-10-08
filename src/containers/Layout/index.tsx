@@ -38,7 +38,7 @@ export function AppLayout({
               to="/posts"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <span>Посты</span>
+              <span>Блог</span>
             </NavLink>
           </Menu.Item>
         </Menu>
@@ -77,9 +77,9 @@ export function AppLayout({
             {children}
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
+        {/* <Footer style={{ textAlign: "center" }}>
           Ant Design ©2018 Created by Ant UED
-        </Footer>
+        </Footer> */}
       </Layout>
     </Layout>
   );

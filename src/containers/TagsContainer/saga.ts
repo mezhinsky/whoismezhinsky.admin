@@ -1,8 +1,7 @@
-import { takeLatest, call, put, select } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import { apiAxios } from '../../utils/request';
 
 import { actionTypes, getTagsAction, getTagsSuccessAction, tagCreateSuccessAction, tagUpdateSuccessAction, tagUpdateErrorAction, tagDeleteSuccessAction, tagDeleteErrorAction } from "./actions";
-import { makeSelectPage } from './selectors';
 
 import Config from '../../config';
 
@@ -62,7 +61,7 @@ function* updateTag({ index, tag }: any) {
 function* deleteTag({ tag }: any) {
   const options = {
     method: "DELETE",
-    url: `${Config.api.URL}/tags/${tag.id}`,
+    url: `${Config.api.URL}/tags/${tag._id}`,
     headers: {
       'Content-Type': 'application/json'
     },
